@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { colors } from "../Constants/Colors";
 import { ImageSourcePropType } from "react-native";
+import { backendUrl } from "../Constants/Global";
 
 export default function ExploreCard({
   name,
@@ -12,7 +13,7 @@ export default function ExploreCard({
   image,
 }: {
   name: string;
-  rating: number;
+  rating: string;
   location: string;
   image: string;
   type: "restaurant" | "cafe";
@@ -21,7 +22,7 @@ export default function ExploreCard({
     <View style={styles.card}>
       <Image
         source={{
-          uri: `http://192.168.1.9:8081/assets/photos/${image}`,
+          uri: `${backendUrl + "public/" + image}`,
         }}
         // source={require(`file://../assets/photos/${image}`)}
         // source={require("../assets/photos/coffee-0.jpg")}

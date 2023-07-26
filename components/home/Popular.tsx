@@ -1,10 +1,12 @@
 import { View, Text, ScrollView, FlatList } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { titlestyle } from "../../Constants/Styles";
 import PopularCard from "../../layout/PopularCard";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { gettop5, mockdata } from "../../Constants/mockdata";
-
+import { getplaces, getpopularplaces } from "../../api/placesapi";
+import axios from "axios";
+import { Iplace } from "../../Constants/interfaces";
 export default function Popular() {
   const scrollViewRef = useRef<FlatList>(null);
   const [indexscroll, setIndexscroll] = useState(0);
@@ -34,12 +36,29 @@ export default function Popular() {
       }
     }
   };
+  const [places, setPlaces] = useState<Array<Iplace>>([]);
+  const fetchplaces = async () => {
+    const places = await getpopularplaces(6);
+    if (places.data) {
+      setPlaces(places.data);
+    }
+    // console.log("fists");
+  };
+
+  useEffect(() => {
+    fetchplaces();
+  }, []);
+
+  if (places.length === 0) {
+    return <Text>Loading</Text>;
+  }
+
   return (
     <View>
       <Text style={[titlestyle, { marginVertical: 10 }]}>Popular</Text>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <FlatList
-          data={mockdata}
+          data={places}
           renderItem={(i) => (
             <PopularCard
               image={i.item.image}

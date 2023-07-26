@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { colors } from "../Constants/Colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { backendUrl } from "../Constants/Global";
 
 export default function PopularCard({
   image,
@@ -19,7 +20,7 @@ export default function PopularCard({
       <View style={styles.cardimage}>
         <Image
           source={{
-            uri: `http://192.168.1.9:8081/assets/photos/${image}`,
+            uri: `${backendUrl + "public/" + image}`,
           }}
           style={{ height: "100%", width: "100%" }}
         />
