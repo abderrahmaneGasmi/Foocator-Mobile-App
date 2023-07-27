@@ -3,10 +3,27 @@ import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { colors } from "../Constants/Colors";
 
-export default function Search() {
+export default function Search({
+  input,
+  updateinput,
+  focusoninput,
+  inputref,
+}: {
+  input: string;
+  updateinput: (input: string) => void;
+  focusoninput?: () => void;
+  inputref?: React.RefObject<TextInput>;
+}) {
   return (
     <View style={style.searchcontainer}>
-      <TextInput placeholder="Search" style={{ fontSize: 22 }} />
+      <TextInput
+        placeholder="Search"
+        style={{ fontSize: 22, width: "90%" }}
+        onChangeText={(text) => updateinput(text)}
+        value={input}
+        onFocus={focusoninput}
+        ref={inputref}
+      />
       <Ionicons name="search-outline" size={35} color={colors.gray} />
     </View>
   );

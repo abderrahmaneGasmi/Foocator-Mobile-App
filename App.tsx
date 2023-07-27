@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { colors } from "./Constants/Colors";
+import Maps from "./pages/Maps";
 
 const customFonts = {
   oxygen: require("./assets/fonts/Oxygen-Regular.ttf"),
@@ -45,65 +46,69 @@ export default function App() {
   }
   return (
     // <>
-    //   <SafeAreaView
-    //     style={{ marginTop: StatusBar.currentHeight, flex: 1 }}
-    //     // onLayout={onLayoutRootView}
-    //   >
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarStyle: {
-            backgroundColor: "white",
-            borderTopWidth: 0,
-            elevation: 0,
-            height: 70,
-          },
-          headerShown: false,
-          tabBarLabelStyle: {
-            fontFamily: "oxygenBold",
-            fontSize: 12,
-          },
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName = "settings-outline";
-            switch (route.name) {
-              case "Home":
-                iconName = focused ? "home" : "home-outline";
-                break;
-              case "First":
-                iconName = focused ? "list" : "list-outline";
-                break;
-              case "Login":
-                iconName = focused ? "log-in" : "log-in-outline";
-                break;
-              case "Signup":
-                iconName = focused ? "person" : "person-outline";
-                break;
+    <SafeAreaView
+      style={{ marginTop: StatusBar.currentHeight, flex: 1 }}
+      // onLayout={onLayoutRootView}
+    >
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarStyle: {
+              backgroundColor: "white",
+              borderTopWidth: 0,
+              elevation: 0,
+              height: 70,
+            },
+            headerShown: false,
+            tabBarLabelStyle: {
+              fontFamily: "oxygenBold",
+              fontSize: 12,
+            },
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName = "settings-outline";
+              switch (route.name) {
+                case "Home":
+                  iconName = focused ? "home" : "home-outline";
+                  break;
+                case "Maps":
+                  iconName = focused ? "map" : "map-outline";
+                  break;
+                case "First":
+                  iconName = focused ? "list" : "list-outline";
+                  break;
+                case "Login":
+                  iconName = focused ? "log-in" : "log-in-outline";
+                  break;
+                case "Signup":
+                  iconName = focused ? "person" : "person-outline";
+                  break;
 
-              default:
-                break;
-            }
+                default:
+                  break;
+              }
 
-            // You can return any component that you like here!
-            return (
-              <Ionicons
-                name={iconName}
-                size={40}
-                color={color}
-                style={{ paddingVertical: 5 }}
-              />
-            );
-          },
-          tabBarActiveTintColor: colors.secondary,
-          tabBarInactiveTintColor: "gray",
-        })}
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="First" component={First} />
-        <Tab.Screen name="Login" component={Login} />
-        <Tab.Screen name="Signup" component={Signup} />
-      </Tab.Navigator>
-    </NavigationContainer>
-    //</SafeAreaView>
+              // You can return any component that you like here!
+              return (
+                <Ionicons
+                  name={iconName}
+                  size={40}
+                  color={color}
+                  style={{ paddingVertical: 5 }}
+                />
+              );
+            },
+            tabBarActiveTintColor: colors.secondary,
+            tabBarInactiveTintColor: "gray",
+          })}
+        >
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Maps" component={Maps} />
+          <Tab.Screen name="First" component={First} />
+          <Tab.Screen name="Login" component={Login} />
+          {/* <Tab.Screen name="Signup" component={Signup} /> */}
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
     // <ExpoStatusBar style="auto" />
     // </>
   );
