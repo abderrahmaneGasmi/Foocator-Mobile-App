@@ -5,7 +5,7 @@ import {
   ImageBackground,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Search from "../layout/Search";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../Constants/Colors";
@@ -13,7 +13,11 @@ import Categories from "../components/home/Categories";
 import Explore from "../components/home/Explore";
 import Popular from "../components/home/Popular";
 
-export default function Home() {
+export default function Home({ navigation }: { navigation: any }) {
+  const navigateToPlace = (params?: { id: string }) => {
+    navigation.navigate("Place", params);
+  };
+  const [input, setInput] = useState("");
   return (
     <View style={styles.container}>
       <View style={styles.searchcontainer}>
@@ -29,13 +33,13 @@ export default function Home() {
           source={require("../assets/food.png")}
           style={styles.backgroundimage}
         />
-        <Search />
+        <Search input={input} updateinput={setInput} />
       </View>
       <View style={{ flex: 0.9 }}>
         <ScrollView style={{ padding: 20 }}>
           <Categories />
-          <Popular />
-          <Explore />
+          <Popular navigateToPlace={navigateToPlace} />
+          <Explore navigateToPlace={navigateToPlace} />
         </ScrollView>
       </View>
     </View>

@@ -3,7 +3,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { colors } from "../Constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function First() {
+export default function First({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -63,10 +63,16 @@ export default function First() {
         </View>
       </View>
       <View style={styles.buttons}>
-        <Text style={{ ...styles.button, backgroundColor: colors.secondary }}>
+        <Text
+          style={{ ...styles.button, backgroundColor: colors.secondary }}
+          onPress={() => navigation.navigate("Login")}
+        >
           Login
         </Text>
-        <Text style={{ ...styles.button, backgroundColor: colors.tertiary }}>
+        <Text
+          style={{ ...styles.button, backgroundColor: colors.tertiary }}
+          onPress={() => navigation.navigate("Signup")}
+        >
           Sign Up
         </Text>
       </View>

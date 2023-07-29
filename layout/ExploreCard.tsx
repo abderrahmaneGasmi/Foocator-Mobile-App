@@ -4,6 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { colors } from "../Constants/Colors";
 import { ImageSourcePropType } from "react-native";
 import { backendUrl } from "../Constants/Global";
+import { typography } from "../Constants/typography";
 
 export default function ExploreCard({
   name,
@@ -11,15 +12,24 @@ export default function ExploreCard({
   location,
   type,
   image,
+  navigateToPlace,
+  id,
 }: {
+  id: string;
   name: string;
   rating: string;
   location: string;
   image: string;
   type: "restaurant" | "cafe";
+  navigateToPlace: (params?: { id: string }) => void;
 }) {
   return (
-    <View style={styles.card}>
+    <View
+      style={styles.card}
+      onTouchEnd={() => {
+        navigateToPlace({ id });
+      }}
+    >
       <Image
         source={{
           uri: `${backendUrl + "public/" + image}`,
@@ -49,7 +59,8 @@ export default function ExploreCard({
           >
             <Text
               style={{
-                fontSize: name.length > 20 ? 18 : 20,
+                fontSize:
+                  name.length > 20 ? typography.medium : typography.large,
                 fontWeight: "bold",
                 marginRight: 10,
               }}
@@ -67,7 +78,7 @@ export default function ExploreCard({
               <Ionicons name="star" size={25} color="#fff" style={{}} />
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: typography.medium,
                   fontWeight: "bold",
                   color: "#fff",
                 }}
@@ -90,7 +101,7 @@ export default function ExploreCard({
             />
             <Text
               style={{
-                fontSize: 14,
+                fontSize: typography.mini,
                 fontWeight: "bold",
                 color: colors.darkgray,
               }}

@@ -6,4 +6,5 @@ export interface Iplace {
   lng: string;
   lat: string;
   address: string;
+  _id: string;
 }

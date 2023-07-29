@@ -1,7 +1,8 @@
 import { StyleProp, TextStyle } from "react-native";
+import { typography } from "./typography";
 
 export const titlestyle: StyleProp<TextStyle> = {
-  fontSize: 30,
+  fontSize: typography.xxlarge,
   fontFamily: "oxygenBold",
 };
 

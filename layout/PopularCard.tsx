@@ -3,20 +3,30 @@ import React from "react";
 import { colors } from "../Constants/Colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { backendUrl } from "../Constants/Global";
+import { typography } from "../Constants/typography";
 
 export default function PopularCard({
   image,
   name,
   rating,
   type,
+  navigateToPlace,
+  id,
 }: {
   image: string;
   name: string;
   rating: number;
   type: "cafe" | "restaurant";
+  navigateToPlace: (params?: { id: string }) => void;
+  id: string;
 }) {
   return (
-    <View style={styles.card}>
+    <View
+      style={styles.card}
+      onTouchEnd={() => {
+        navigateToPlace({ id });
+      }}
+    >
       <View style={styles.cardimage}>
         <Image
           source={{
@@ -29,7 +39,7 @@ export default function PopularCard({
             backgroundColor: colors.white,
             color: colors.black,
             position: "absolute",
-            fontSize: 17,
+            fontSize: typography.medium,
             bottom: 15,
             left: 15,
             right: 15,
@@ -78,7 +88,7 @@ export default function PopularCard({
         >
           <Text
             style={{
-              fontSize: 20,
+              fontSize: typography.medium,
               fontWeight: "bold",
             }}
           >

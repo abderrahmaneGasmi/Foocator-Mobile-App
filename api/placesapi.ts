@@ -47,3 +47,16 @@ export const searchplaces = async (query: string) => {
   }
   return { error: null, data: req.data };
 };
+export const getplace = async (id: string) => {
+  let req;
+  try {
+    req = await client.get(`api/places/${id}`, {});
+  } catch (error: any) {
+    const { response }: any = error;
+
+    if (response?.data) return { error: response.data.response };
+
+    return { error: error.message || error, data: null };
+  }
+  return { error: null, data: req.data };
+};

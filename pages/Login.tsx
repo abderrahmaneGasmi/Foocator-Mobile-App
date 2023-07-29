@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 import React from "react";
 import { colors } from "../Constants/Colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
-export default function Login() {
+export default function Login({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
       <CredHeader />
@@ -117,14 +117,22 @@ export default function Login() {
                 alignItems: "center",
               }}
             >
-              <Text style={{ color: colors.white, fontSize: 30 }}>Login</Text>
+              <Text
+                style={{ color: colors.white, fontSize: 30 }}
+                onPress={() => navigation.navigate("Dashboard")}
+              >
+                Login
+              </Text>
             </View>
           </View>
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
             <Text style={{ color: colors.gray, fontSize: 20 }}>
               Don't have an account?
             </Text>
-            <Text style={{ color: colors.secondary, fontSize: 20 }}>
+            <Text
+              style={{ color: colors.secondary, fontSize: 20 }}
+              onPress={() => navigation.navigate("Signup")}
+            >
               {" "}
               Sign Up
             </Text>

@@ -7,7 +7,11 @@ import { gettop5, mockdata } from "../../Constants/mockdata";
 import { getplaces, getpopularplaces } from "../../api/placesapi";
 import axios from "axios";
 import { Iplace } from "../../Constants/interfaces";
-export default function Popular() {
+export default function Popular({
+  navigateToPlace,
+}: {
+  navigateToPlace: (params?: { id: string }) => void;
+}) {
   const scrollViewRef = useRef<FlatList>(null);
   const [indexscroll, setIndexscroll] = useState(0);
   const handleScrollRight = () => {
@@ -61,10 +65,13 @@ export default function Popular() {
           data={places}
           renderItem={(i) => (
             <PopularCard
+              key={i.index}
+              id={i.item._id}
               image={i.item.image}
               name={i.item.name}
               rating={i.item.rating}
               type={i.item.image.startsWith("coffee") ? "cafe" : "restaurant"}
+              navigateToPlace={navigateToPlace}
             />
           )}
           // onScroll={(event) => {

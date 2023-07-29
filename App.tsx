@@ -1,16 +1,12 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
+import * as Font from "expo-font";
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Dashboard from "./pages/Dashboard";
 import First from "./pages/First";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import Home from "./pages/Home";
-import * as Font from "expo-font";
-import React, { useEffect, useState } from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { colors } from "./Constants/Colors";
-import Maps from "./pages/Maps";
 
 const customFonts = {
   oxygen: require("./assets/fonts/Oxygen-Regular.ttf"),
@@ -23,7 +19,6 @@ export default function App() {
     await Font.loadAsync(customFonts);
     setShowpages(true);
   };
-  const Tab = createBottomTabNavigator();
 
   // const [fontsLoaded] = useFonts({
   //   // oxygenBold: require("./assets/fonts/Oxygen-Bold.tff"),
@@ -41,6 +36,7 @@ export default function App() {
     _loadFontsAsync();
   }, []);
 
+  const Stack = createNativeStackNavigator();
   if (!showpages) {
     return null;
   }
@@ -51,62 +47,30 @@ export default function App() {
       // onLayout={onLayoutRootView}
     >
       <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarStyle: {
-              backgroundColor: "white",
-              borderTopWidth: 0,
-              elevation: 0,
-              height: 70,
-            },
-            headerShown: false,
-            tabBarLabelStyle: {
-              fontFamily: "oxygenBold",
-              fontSize: 12,
-            },
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName = "settings-outline";
-              switch (route.name) {
-                case "Home":
-                  iconName = focused ? "home" : "home-outline";
-                  break;
-                case "Maps":
-                  iconName = focused ? "map" : "map-outline";
-                  break;
-                case "First":
-                  iconName = focused ? "list" : "list-outline";
-                  break;
-                case "Login":
-                  iconName = focused ? "log-in" : "log-in-outline";
-                  break;
-                case "Signup":
-                  iconName = focused ? "person" : "person-outline";
-                  break;
+        <Stack.Navigator>
+          <Stack.Screen
+            name="First"
+            component={First}
+            options={{ headerShown: false }}
+          />
 
-                default:
-                  break;
-              }
+          <Stack.Screen
+            name="Dashboard"
+            component={Dashboard}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ headerShown: false }}
+          />
 
-              // You can return any component that you like here!
-              return (
-                <Ionicons
-                  name={iconName}
-                  size={40}
-                  color={color}
-                  style={{ paddingVertical: 5 }}
-                />
-              );
-            },
-            tabBarActiveTintColor: colors.secondary,
-            tabBarInactiveTintColor: "gray",
-          })}
-        >
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Maps" component={Maps} />
-          <Tab.Screen name="First" component={First} />
-          <Tab.Screen name="Login" component={Login} />
-          {/* <Tab.Screen name="Signup" component={Signup} /> */}
-        </Tab.Navigator>
+          <Stack.Screen
+            name="Signup"
+            component={Signup}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
     // <ExpoStatusBar style="auto" />

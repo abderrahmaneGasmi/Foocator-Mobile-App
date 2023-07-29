@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import { colors } from "../../Constants/Colors";
 import { margin, titlestyle } from "../../Constants/Styles";
+import { typography } from "../../Constants/typography";
 
 export default function Categories() {
   return (
@@ -23,14 +24,18 @@ export default function Categories() {
           <Text
             style={{
               color: colors.white,
-              fontSize: 40,
+              fontSize: typography.xxxlarge,
               fontFamily: "oxygenBold",
             }}
           >
             Resturant
           </Text>
           <Text
-            style={{ color: colors.white, fontSize: 25, fontFamily: "oxygen" }}
+            style={{
+              color: colors.white,
+              fontSize: typography.large,
+              fontFamily: "oxygen",
+            }}
           >
             Find your favorite resturant
           </Text>
@@ -53,14 +58,18 @@ export default function Categories() {
           <Text
             style={{
               color: colors.white,
-              fontSize: 40,
+              fontSize: typography.xxxlarge,
               fontFamily: "oxygenBold",
             }}
           >
             Coffee Shop
           </Text>
           <Text
-            style={{ color: colors.white, fontSize: 25, fontFamily: "oxygen" }}
+            style={{
+              color: colors.white,
+              fontSize: typography.large,
+              fontFamily: "oxygen",
+            }}
           >
             Find your favorite coffee shop
           </Text>

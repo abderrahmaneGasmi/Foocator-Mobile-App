@@ -5,7 +5,11 @@ import { titlestyle } from "../../Constants/Styles";
 import { mockdata } from "../../Constants/mockdata";
 import { Iplace } from "../../Constants/interfaces";
 import { getplaces } from "../../api/placesapi";
-export default function Explore() {
+export default function Explore({
+  navigateToPlace,
+}: {
+  navigateToPlace: (params?: { id: string }) => void;
+}) {
   const [places, setPlaces] = useState<Array<Iplace>>([]);
 
   useEffect(() => {
@@ -33,6 +37,8 @@ export default function Explore() {
           location={item.address}
           image={item.image}
           type={item.image.startsWith("coffee") ? "cafe" : "restaurant"}
+          navigateToPlace={navigateToPlace}
+          id={item._id}
         />
       ))}
     </View>

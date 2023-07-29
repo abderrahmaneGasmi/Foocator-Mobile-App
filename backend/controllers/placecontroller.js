@@ -36,7 +36,6 @@ exports.addPlace = async (req, res) => {
 
 exports.getPlaces = async (req, res) => {
   try {
-    console.log("get places");
     const places = await Place.find().select(
       "name type lat lng image address rating ratingnumber"
     );
@@ -52,7 +51,7 @@ exports.getpopularPlaces = async (req, res) => {
     console.log("get places");
     const places = await Place.find()
       .sort({ ratingnumber: -1 })
-      .select("name type lat lng image address rating ratingnumber")
+      .select("name type lat lng image address rating ratingnumber _id")
       .limit(limit);
     res.json(places);
   } catch (err) {
@@ -68,9 +67,21 @@ exports.searchPlaces = async (req, res) => {
       name: { $regex: search, $options: "i" },
     })
       .sort({ ratingnumber: -1 })
-      .select("name type lat lng image address rating ratingnumber")
+      .select("name type lat lng image address rating ratingnumber _id")
       .limit(limit);
     res.json(places);
+  } catch (err) {
+    sendstatus(res, 400, err);
+  }
+};
+exports.getPlace = async (req, res) => {
+  console.log("get places");
+
+  if (!req.params.placeId)
+    return res.status(400).json({ message: "Please fill all the fields" });
+  try {
+    const place = await Place.findById(req.params.placeId);
+    res.json(place);
   } catch (err) {
     sendstatus(res, 400, err);
   }

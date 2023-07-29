@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { colors } from "../Constants/Colors";
+import { typography } from "../Constants/typography";
 
 export default function Search({
   input,
@@ -18,7 +19,7 @@ export default function Search({
     <View style={style.searchcontainer}>
       <TextInput
         placeholder="Search"
-        style={{ fontSize: 22, width: "90%" }}
+        style={{ fontSize: typography.large, width: "90%" }}
         onChangeText={(text) => updateinput(text)}
         value={input}
         onFocus={focusoninput}
