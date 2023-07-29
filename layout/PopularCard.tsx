@@ -39,7 +39,7 @@ export default function PopularCard({
             backgroundColor: colors.white,
             color: colors.black,
             position: "absolute",
-            fontSize: typography.medium,
+            fontSize: typography.large,
             bottom: 15,
             left: 15,
             right: 15,
@@ -65,13 +65,13 @@ export default function PopularCard({
           />
           <Ionicons
             name={type === "cafe" ? "cafe-outline" : "restaurant-outline"}
-            size={40}
+            size={typography.big}
             color={colors.primary}
             style={{
               backgroundColor: colors.white,
               borderRadius: 50,
-              paddingVertical: 9,
-              paddingHorizontal: 13,
+              padding: 5,
+              alignSelf: "center",
             }}
             //   style={{ marginLeft: 20 }}
           />
@@ -96,9 +96,9 @@ export default function PopularCard({
           </Text>
           <Ionicons
             name="star"
-            size={23}
+            size={typography.medium}
             color="#FFD700"
-            style={{ alignSelf: "flex-end" }}
+            style={{ alignSelf: "center" }}
           />
         </View>
       </View>

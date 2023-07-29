@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  FlatList,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { getplace } from "../api/placesapi";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -6,11 +14,102 @@ import { colors } from "../Constants/Colors";
 import { Iplace } from "../Constants/interfaces";
 import { typography } from "../Constants/typography";
 import { backendUrl } from "../Constants/Global";
+import MenuItems from "../components/place/MenuItems";
+import Reviews from "../components/place/Reviews";
+import Photos from "../components/place/Photos";
 type navitems = "info" | "reviews" | "photos" | "items";
+
+const resimages = [
+  {
+    id: 1,
+    image: require("../assets/menuItems/resturant1.png"),
+    name: "Pasta with tomato sauce",
+    price: 15.6,
+    discount: 20.6,
+  },
+  {
+    id: 2,
+    image: require("../assets/menuItems/resturant2.png"),
+    name: "Soup with vegetables",
+    price: 24.6,
+    discount: 30.6,
+  },
+  {
+    id: 3,
+    image: require("../assets/menuItems/resturant3.png"),
+    name: "Spaghetti with meatballs",
+    price: 9.3,
+    discount: 12.6,
+  },
+  {
+    id: 4,
+    image: require("../assets/menuItems/resturant4.png"),
+    name: "Salad with vegetables",
+    price: 36,
+    discount: 40.6,
+  },
+  {
+    id: 5,
+    image: require("../assets/menuItems/resturant5.png"),
+    name: "Dessert : OatMilk with fruits",
+    price: 15.6,
+    discount: 20.6,
+  },
+];
+const reviews = [
+  {
+    id: 1,
+    name: "John Doe",
+    image: require("../assets/reviews/review(1).jpg"),
+    review:
+      "I love this place so much, the food is amazing and the service is great!",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Chris Doe",
+    image: require("../assets/reviews/review(2).jpg"),
+    review: "i liked the food but the service was not that good",
+    rating: 3,
+  },
+  {
+    id: 3,
+    name: "Jane Doe",
+    image: require("../assets/reviews/review(3).jpg"),
+    review: "the plate was dirty and the food was cold",
+    rating: 1,
+  },
+  {
+    id: 4,
+    name: "John Doe",
+    image: require("../assets/reviews/review(4).jpg"),
+    review: "i love the chicken wings and the service was great",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "John Doe",
+    image: require("../assets/reviews/review(5).jpg"),
+    review:
+      "I love this place so much, the food is amazing and the service is great!",
+    rating: 4,
+  },
+];
 export default function Place(props: { navigation: any; route: any }) {
   if (props.route.params.id === undefined) {
     return <Text>loading</Text>;
   }
+
+  const [imageParentFlex, setImageParentFlex] = useState(0.3);
+  const flatListRef = React.useRef();
+
+  // const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+  //   const { contentOffset } = event.nativeEvent;
+  //   // Calculate the new flex value for the image parent view based on the scroll position
+  //   const newImageParentFlex = Math.max(0.3 - contentOffset.y * 0.001, 0);
+  //   setImageParentFlex(newImageParentFlex);
+  // };
+
   const [item, setItem] = useState({} as Iplace);
   const [selectednav, setSelectednav] = useState<navitems>("items");
   useEffect(() => {
@@ -58,7 +157,7 @@ export default function Place(props: { navigation: any; route: any }) {
           }}
         />
       </View>
-      <View style={{ flex: 0.3 }}>
+      <View style={{ flex: imageParentFlex }}>
         <Image
           source={{ uri: `${backendUrl + "public/" + item.image}` }}
           style={styles.image}
@@ -140,6 +239,44 @@ export default function Place(props: { navigation: any; route: any }) {
             Photos
           </Text>
         </View>
+        <View style={{ flex: 0.85 }}>
+          {selectednav === "items" ? (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                // flexWrap: "wrap",
+                gap: 10,
+              }}
+            >
+              {/* {resimages.map((item, index) => (
+                <MenuItems {...item} key={index} />
+              ))} */}
+              <FlatList
+                data={resimages}
+                renderItem={({ item }) => <MenuItems {...item} />}
+                // onScroll={(event) => handleScroll(event)}
+              />
+            </View>
+          ) : selectednav === "reviews" ? (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                // flexWrap: "wrap",
+                gap: 10,
+              }}
+            >
+              <FlatList
+                data={reviews}
+                renderItem={({ item }) => <Reviews {...item} />}
+                // onScroll={(event) => handleScroll(event)}
+              />
+            </View>
+          ) : selectednav === "photos" ? (
+            <Photos />
+          ) : null}
+        </View>
       </View>
     </View>
   );
@@ -175,5 +312,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     justifyContent: "space-between",
+    marginRight: 20,
   },
 });

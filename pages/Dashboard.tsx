@@ -8,6 +8,8 @@ import Maps from "./Maps";
 import { colors } from "../Constants/Colors";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Place from "./Place";
+import Saved from "./Saved";
+import Search from "./Search";
 
 export default function Dashboard() {
   const Stack = createNativeStackNavigator();
@@ -18,6 +20,7 @@ export default function Dashboard() {
       }}
     >
       <Stack.Screen name="Tabsnavigations" component={Tabsnavigations} />
+      <Stack.Screen name="Search" component={Search} />
       <Stack.Screen
         name="Place"
         component={Place}
@@ -48,13 +51,13 @@ const Tabsnavigations = () => {
           borderTopWidth: 0,
           elevation: 0,
           // height: 70,
-          flex: 0.07,
+          flex: 0.08,
           justifyContent: "center",
         },
         headerShown: false,
         tabBarLabelStyle: {
           fontFamily: "oxygenBold",
-          fontSize: typography.mini,
+          fontSize: typography.medium,
         },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName = "settings-outline";
@@ -65,16 +68,8 @@ const Tabsnavigations = () => {
             case "Maps":
               iconName = focused ? "map" : "map-outline";
               break;
-            case "First":
-              iconName = focused ? "list" : "list-outline";
-              break;
-            case "Login":
-              iconName = focused ? "log-in" : "log-in-outline";
-              break;
-            case "Signup":
-              iconName = focused ? "person" : "person-outline";
-              break;
-
+            case "Saved":
+              iconName = focused ? "heart" : "heart-outline";
             default:
               break;
           }
@@ -83,7 +78,7 @@ const Tabsnavigations = () => {
           return (
             <Ionicons
               name={iconName}
-              size={35}
+              size={typography.xxxlarge}
               color={color}
               style={{ paddingVertical: 5 }}
             />
@@ -95,6 +90,7 @@ const Tabsnavigations = () => {
     >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Maps" component={Maps} />
+      <Tab.Screen name="Saved" component={Saved} />
       {/* <Tab.Screen name="First" component={First} />
         <Tab.Screen name="Login" component={Login} /> */}
       {/* <Tab.Screen name="Signup" component={Signup} /> */}

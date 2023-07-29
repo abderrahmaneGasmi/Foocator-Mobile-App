@@ -22,4 +22,7 @@ export const typography = {
   xlarge: normalize(16),
   xxlarge: normalize(18),
   xxxlarge: normalize(20),
+  big: normalize(22),
+  xbig: normalize(24),
+  bigtitle: normalize(28),
 };

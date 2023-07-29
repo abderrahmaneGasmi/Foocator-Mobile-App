@@ -75,10 +75,15 @@ export default function ExploreCard({
                 padding: 5,
               }}
             >
-              <Ionicons name="star" size={25} color="#fff" style={{}} />
+              <Ionicons
+                name="star"
+                size={typography.small}
+                color="#fff"
+                style={{}}
+              />
               <Text
                 style={{
-                  fontSize: typography.medium,
+                  fontSize: typography.small,
                   fontWeight: "bold",
                   color: "#fff",
                 }}
@@ -113,11 +118,11 @@ export default function ExploreCard({
         <View style={styles.right}>
           <Image
             source={require("../assets/open.png")}
-            style={{ width: 50, height: 50 }}
+            style={{ width: typography.xxxlarge, height: typography.xbig }}
           />
           <Ionicons
             name={`${type == "restaurant" ? "restaurant" : "cafe"}-outline`}
-            size={40}
+            size={typography.xbig}
             color={colors.primary}
             //   style={{ marginLeft: 20 }}
           />

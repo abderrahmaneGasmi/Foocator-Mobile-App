@@ -17,6 +17,9 @@ export default function Home({ navigation }: { navigation: any }) {
   const navigateToPlace = (params?: { id: string }) => {
     navigation.navigate("Place", params);
   };
+  const search = () => {
+    navigation.navigate("Search", { search: input });
+  };
   const [input, setInput] = useState("");
   return (
     <View style={styles.container}>
@@ -33,7 +36,7 @@ export default function Home({ navigation }: { navigation: any }) {
           source={require("../assets/food.png")}
           style={styles.backgroundimage}
         />
-        <Search input={input} updateinput={setInput} />
+        <Search input={input} updateinput={setInput} search={search} />
       </View>
       <View style={{ flex: 0.9 }}>
         <ScrollView style={{ padding: 20 }}>

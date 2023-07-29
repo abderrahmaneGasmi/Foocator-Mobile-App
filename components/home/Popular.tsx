@@ -7,6 +7,7 @@ import { gettop5, mockdata } from "../../Constants/mockdata";
 import { getplaces, getpopularplaces } from "../../api/placesapi";
 import axios from "axios";
 import { Iplace } from "../../Constants/interfaces";
+import { typography } from "../../Constants/typography";
 export default function Popular({
   navigateToPlace,
 }: {
@@ -94,13 +95,14 @@ export default function Popular({
         />
         <Ionicons
           name="chevron-forward-outline"
-          size={50}
+          size={typography.big}
           color="#000"
           style={{
             backgroundColor: "#fff",
             borderRadius: 50,
-            paddingVertical: 9,
-            paddingHorizontal: 13,
+            // paddingVertical: 9,
+            // paddingHorizontal: 13,
+            padding: 10,
             position: "absolute",
             right: 0,
             top: "40%",
@@ -109,13 +111,14 @@ export default function Popular({
         />
         <Ionicons
           name="chevron-back-outline"
-          size={50}
+          size={typography.big}
           color="#000"
           style={{
             backgroundColor: "#fff",
             borderRadius: 50,
-            paddingVertical: 9,
-            paddingHorizontal: 13,
+            // paddingVertical: 9,
+            // paddingHorizontal: 13,
+            padding: 10,
             position: "absolute",
             left: 0,
             top: "40%",

@@ -75,8 +75,6 @@ exports.searchPlaces = async (req, res) => {
   }
 };
 exports.getPlace = async (req, res) => {
-  console.log("get places");
-
   if (!req.params.placeId)
     return res.status(400).json({ message: "Please fill all the fields" });
   try {

@@ -9,11 +9,13 @@ export default function Search({
   updateinput,
   focusoninput,
   inputref,
+  search,
 }: {
   input: string;
   updateinput: (input: string) => void;
   focusoninput?: () => void;
   inputref?: React.RefObject<TextInput>;
+  search: () => void;
 }) {
   return (
     <View style={style.searchcontainer}>
@@ -25,7 +27,12 @@ export default function Search({
         onFocus={focusoninput}
         ref={inputref}
       />
-      <Ionicons name="search-outline" size={35} color={colors.gray} />
+      <Ionicons
+        name="search-outline"
+        size={35}
+        color={colors.gray}
+        onPress={search}
+      />
     </View>
   );
 }

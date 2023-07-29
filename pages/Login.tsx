@@ -1,7 +1,15 @@
-import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { colors } from "../Constants/Colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { typography } from "../Constants/typography";
 export default function Login({ navigation }: { navigation: any }) {
   return (
     <View style={styles.container}>
@@ -10,6 +18,7 @@ export default function Login({ navigation }: { navigation: any }) {
         source={require("../assets/foocator-bigger-colored.png")}
         style={styles.logo}
       />
+
       <View
         style={{
           flex: 1,
@@ -19,124 +28,159 @@ export default function Login({ navigation }: { navigation: any }) {
         <Text
           style={{
             color: colors.secondary,
-            fontSize: 50,
-            fontWeight: "bold",
+            fontSize: typography.bigtitle,
             alignSelf: "center",
+            fontFamily: "oxygenBold",
           }}
         >
           Login Page
         </Text>
         <Text
           style={{
-            color: colors.black,
-            fontSize: 25,
-            fontWeight: "bold",
+            color: colors.darkgray,
+            fontSize: typography.xlarge,
+            // fontWeight: "bold",
+            fontFamily: "oxygen",
             marginTop: 10,
           }}
         >
           Input your credentials here
         </Text>
         <View style={styles.form}>
-          <View style={styles.formgroup}>
-            <Text style={{ color: colors.gray, fontSize: 25 }}>Username</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                borderWidth: 1,
-                borderColor: colors.gray,
-                borderRadius: 10,
-                // padding: 10,
-              }}
-            >
-              <Ionicons
-                name="person-outline"
-                size={35}
-                color={colors.gray}
-                style={{
-                  padding: 10,
-                  borderRightWidth: 1,
-                  borderRightColor: colors.gray,
-                }}
-              />
-              <TextInput
-                placeholder="Username"
-                style={{ flex: 1, fontSize: 20, marginLeft: 10 }}
-              />
-            </View>
-          </View>
-          <View style={styles.formgroup}>
-            <Text style={{ color: colors.gray, fontSize: 25 }}>Password</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                borderWidth: 1,
-                borderColor: colors.gray,
-                borderRadius: 10,
-                // padding: 10,
-              }}
-            >
-              <Ionicons
-                name="lock-closed-outline"
-                size={35}
-                color={colors.gray}
-                style={{
-                  padding: 10,
-                  borderRightWidth: 1,
-                  borderRightColor: colors.gray,
-                }}
-              />
-              <TextInput
-                placeholder="Password"
-                style={{ flex: 1, fontSize: 20, marginLeft: 10 }}
-              />
-            </View>
-          </View>
-          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-            <Text style={{ color: colors.gray, fontSize: 20 }}>
-              Forgot Password?
-            </Text>
-          </View>
-          <View
-            style={
-              {
-                //   flex: 1,
-                //   justifyContent: "flex-end",
-                //   marginBottom: 36,
-              }
-            }
-          >
-            <View
-              style={{
-                backgroundColor: colors.secondary,
-                paddingVertical: 10,
-                paddingHorizontal: 20,
-                borderRadius: 10,
-                marginTop: 20,
-                alignItems: "center",
-              }}
-            >
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.formgroup}>
               <Text
-                style={{ color: colors.white, fontSize: 30 }}
-                onPress={() => navigation.navigate("Dashboard")}
+                style={{
+                  color: colors.gray,
+                  fontSize: typography.large,
+                  fontFamily: "oxygenBold",
+                }}
               >
-                Login
+                Username
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderColor: colors.gray,
+                  borderRadius: 10,
+                  // padding: 10,
+                }}
+              >
+                <Ionicons
+                  name="person"
+                  size={typography.xxxlarge}
+                  color={colors.gray}
+                  style={{
+                    padding: typography.mini,
+                    borderRightWidth: 1,
+                    borderRightColor: colors.gray,
+                  }}
+                />
+                <TextInput
+                  placeholder="Username"
+                  style={{
+                    flex: 1,
+                    fontSize: typography.medium,
+                    marginLeft: 10,
+                    fontFamily: "oxygen",
+                  }}
+                />
+              </View>
+            </View>
+            <View style={styles.formgroup}>
+              <Text
+                style={{
+                  color: colors.gray,
+                  fontSize: typography.large,
+                  fontFamily: "oxygenBold",
+                }}
+              >
+                Password
+              </Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  borderWidth: 1,
+                  borderColor: colors.gray,
+                  borderRadius: 10,
+                  // padding: 10,
+                }}
+              >
+                <Ionicons
+                  name="lock-closed"
+                  size={typography.xxxlarge}
+                  color={colors.gray}
+                  style={{
+                    padding: typography.mini,
+                    borderRightWidth: 1,
+                    borderRightColor: colors.gray,
+                  }}
+                />
+                <TextInput
+                  placeholder="Password"
+                  style={{
+                    flex: 1,
+                    fontSize: typography.medium,
+                    marginLeft: 10,
+                    fontFamily: "oxygen",
+                  }}
+                />
+              </View>
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+              <Text style={{ color: colors.gray, fontSize: typography.small }}>
+                Forgot Password?
               </Text>
             </View>
-          </View>
-          <View style={{ flexDirection: "row", justifyContent: "center" }}>
-            <Text style={{ color: colors.gray, fontSize: 20 }}>
-              Don't have an account?
-            </Text>
-            <Text
-              style={{ color: colors.secondary, fontSize: 20 }}
-              onPress={() => navigation.navigate("Signup")}
+            <View
+              style={
+                {
+                  //   flex: 1,
+                  //   justifyContent: "flex-end",
+                  //   marginBottom: 36,
+                }
+              }
             >
-              {" "}
-              Sign Up
-            </Text>
-          </View>
+              <View
+                style={{
+                  backgroundColor: colors.secondary,
+                  paddingVertical: 10,
+                  paddingHorizontal: 20,
+                  borderRadius: 10,
+                  marginTop: 20,
+                  alignItems: "center",
+                }}
+                onTouchEnd={() => navigation.navigate("Dashboard")}
+              >
+                <Text
+                  style={{ color: colors.white, fontSize: typography.large }}
+                >
+                  Login
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                marginTop: 10,
+              }}
+            >
+              <Text style={{ color: colors.gray, fontSize: typography.large }}>
+                Don't have an account?
+              </Text>
+              <Text
+                style={{ color: colors.secondary, fontSize: typography.large }}
+                onPress={() => navigation.navigate("Signup")}
+              >
+                {" "}
+                Sign Up
+              </Text>
+            </View>
+          </ScrollView>
         </View>
       </View>
     </View>
@@ -151,8 +195,8 @@ const styles = StyleSheet.create({
     paddingTop: 150,
   },
   logo: {
-    width: 500,
-    height: 180,
+    width: "90%",
+    height: 120,
     resizeMode: "contain",
     marginBottom: 20,
     alignSelf: "center",
@@ -160,9 +204,9 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     marginTop: 10,
-    gap: 40,
   },
   formgroup: {
+    marginVertical: 15,
     flexDirection: "column",
     alignItems: "flex-start",
     gap: 10,

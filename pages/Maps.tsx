@@ -177,6 +177,7 @@ export default function Maps() {
         style={{ width: "100%", height: "100%" }}
         scrollEnabled={true}
         zoomEnabled={true}
+        mapType="standard"
         // minZoomLevel={10}
         initialRegion={{
           latitude: parseFloat(places[0].lat),
